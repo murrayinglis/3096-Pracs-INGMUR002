@@ -112,7 +112,14 @@ int main(void)
   while (1)
   {
 	// Toggle LED0
-	HAL_GPIO_TogglePin(GPIOB, LED7_Pin);
+
+	curr_millis = HAL_GetTick(); // Get the current tick
+	if (curr_millis - prev_millis >= delay_t) // Wait for difference of ticks to be greater than delay
+	{
+		HAL_GPIO_TogglePin(GPIOB, LED7_Pin);
+	    prev_millis = curr_millis; // Update the previous millis
+	}
+
 
 	// ADC to LCD; TODO: Read POT1 value and write to LCD
 	adc_val = pollADC();
@@ -125,7 +132,7 @@ int main(void)
 	__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_3, CCR);
 
 	// Wait for delay ms
-	HAL_Delay (delay_t);
+	//HAL_Delay (delay_t);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
