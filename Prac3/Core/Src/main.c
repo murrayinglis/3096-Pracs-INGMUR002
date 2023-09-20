@@ -354,12 +354,15 @@ static void MX_GPIO_Init(void)
 void EXTI0_1_IRQHandler(void)
 {
 	// TODO: Add code to switch LED7 delay frequency
-	GPIO_PinState state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
-	if ((state == GPIO_PIN_SET) && (delay_t == 1000))
+	delay(1000);
+	//GPIO_PinState state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+	//if ((state == GPIO_PIN_SET) && (delay_t == 1000))
+	if (delay_t == 1000)
 	{
 		delay_t = 500;
 	}
-	else if ((state == GPIO_PIN_SET) && (delay_t == 500))
+	//else if ((state == GPIO_PIN_SET) && (delay_t == 500))
+	else if (delay_t == 500)
 	{
 		delay_t = 1000;
 	}
